@@ -1,0 +1,18 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev" : "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rizky Djanuar",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18"
+  }
+}
