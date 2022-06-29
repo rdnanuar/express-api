@@ -1,7 +1,6 @@
 const express = require("express")
 const write = require("./utils")
 const app = express()
-const {v4 : uuid} = require("uuid")
 const friends = require("./data/friends.json")
 const { response } = require("express")
 
@@ -18,7 +17,7 @@ app.use(express.json())
 
 app.post('/friends', (req, res) => {
     const newFriend = {
-        id : uuid(),
+        id : friends.length,
         name : req.body.name,
 
     }
@@ -29,14 +28,27 @@ app.post('/friends', (req, res) => {
     })
 })
 
-app.delete("/friends/:id", (req, res, next) => {
-    const friendId = friends.filter(p => p.id !== req.params.id)
+app.delete("/friends/:id", (req, res) => {
+    const friendId = friends.filter(p => p.id !== Number(req.params.id))
     if(friendId) {
         write("./data/friends.json", friendId)
         res.status(200).json({
-            message : `Data with id ${req.params.id} has been deleted`
+            message : `friends with id ${req.params.id} has been deleted`
         })
     }
+})
+
+app.put("/friends/:id", (req, res) => {
+    const friendId = friends.findIndex(p => p.id === req.params.id)
+    const updateFriend = {
+        id : friendId,
+        name : req.body.name
+    }
+    friends[friendId] = {...updateFriend}
+    write("./data/friends.json", friends)
+    res.status(200).json({
+        data : updateFriend
+    })
 })
 
 app.get("/friends", (req, res) => {
@@ -47,7 +59,7 @@ app.get("/friends", (req, res) => {
 
 app.get("/friends/:id", (req, res) => {
     
-    const friendId = friends.find(({id}) => id === req.params.id)
+    const friendId = friends.find(({id}) => id === Number(req.params.id))
 
     return friendId ?  res.status(200).json({data : [friendId]}) : res.status(404).json({message : `friend with id ${req.params.id} not found`})
 })
