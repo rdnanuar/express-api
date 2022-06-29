@@ -1,8 +1,9 @@
 const express = require("express")
+const {v4 : uuid} = require("uuid")
 const write = require("./utils")
-const app = express()
 const friends = require("./data/friends.json")
-const { response } = require("express")
+
+const app = express()
 
 const PORT = process.env.PORT || 8080
 
@@ -17,7 +18,7 @@ app.use(express.json())
 
 app.post('/friends', (req, res) => {
     const newFriend = {
-        id : friends.length,
+        id : uuid(),
         name : req.body.name,
 
     }
@@ -41,7 +42,7 @@ app.delete("/friends/:id", (req, res) => {
 app.put("/friends/:id", (req, res) => {
     const friendId = friends.findIndex(p => p.id === req.params.id)
     const updateFriend = {
-        id : friendId,
+        id : req.params.id,
         name : req.body.name
     }
     friends[friendId] = {...updateFriend}
