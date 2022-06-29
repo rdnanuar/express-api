@@ -6,4 +6,4 @@ const writeDataToFile = (filename ,content) => {
     })
 }
 
-module.exports = writeDataToFile
+module.exports = {writeDataToFile}
