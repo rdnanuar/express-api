@@ -1,6 +1,5 @@
 const express = require("express")
 const {router} = require("./src/routes/friends-routes")
-
 const app = express()
 
 const PORT = process.env.PORT || 8080

@@ -22,7 +22,7 @@ const listData = {
      * @returns {friendId} return one friend with selected ID
      */
 
-    getFriendsWithId(req, res) {
+    getFriendWithId(req, res) {
         const friendId = friends.find(({id}) => id === req.params.id)
 
         return friendId ?  res.status(200).json({data : [friendId]}) : res.status(404).json({message : `friend with id ${req.params.id} not found`})
