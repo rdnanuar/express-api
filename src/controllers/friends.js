@@ -1,4 +1,4 @@
-const friends = require("../../data/friends.json")
+const friends = require("../models/friends.json")
 const {writeDataToFile} = require("../utils")
 const {v4 : uuid} = require("uuid")
 
