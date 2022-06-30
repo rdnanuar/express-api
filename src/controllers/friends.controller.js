@@ -17,8 +17,8 @@ const listData = {
 
     /**
      * 
-     * @param {req.params.id} req request to express param 
-     * @param {response} res response to client
+     * @param {req} request to express param 
+     * @param {res} response to client
      * @returns {friendId} return one friend with selected ID
      */
 
@@ -27,10 +27,11 @@ const listData = {
 
         return friendId ?  res.status(200).json({data : [friendId]}) : res.status(404).json({message : `friend with id ${req.params.id} not found`})
     },
+
     /**
      * 
-     * @param {req.body.name} req request to express body json 
-     * @param {res.data} res  response to client with data has been created
+     * @param {req} request to express body json 
+     * @param {res} response to client with data has been created
      */
 
     createFriends(req, res) {
@@ -54,8 +55,8 @@ const listData = {
 
     /**
      * 
-     * @param {id, name} req request body name and params id from express
-     * @param {friendId} res response to client with data has been updated
+     * @param {req} request body name and params id from express
+     * @param {res} response to client with data has been updated
      */
 
     updateFriend(req, res) {
@@ -71,10 +72,11 @@ const listData = {
             data : updateFriend
         })
     },
+
     /**
      * 
-     * @param {req.params.id} req request params id from express 
-     * @param {friendId} res respsonse to client with message data has been deleted 
+     * @param {req} request params id from express 
+     * @param {res} respsonse to client with message data has been deleted 
      */
 
     deleteFriend(req, res) {

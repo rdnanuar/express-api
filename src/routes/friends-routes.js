@@ -1,16 +1,11 @@
-const express = require("express")
 const {listData} = require("../controllers/friends.controller")
-const {getMessages, postMessage} = require("../controllers/messages.controller")
+const routerFriends = require("express").Router()
 
-const router = express.Router()
-
-router.get("/friends", listData.getFriendsData)
-router.get("/friends/:id", listData.getFriendWithId)
-router.get("/messages", getMessages)
-router.post("/messages", postMessage)
-router.post("/friends", listData.createFriends)
-router.put("/friends/:id", listData.updateFriend)
-router.delete("/friends/:id", listData.deleteFriend)
+routerFriends.get("/friends", listData.getFriendsData)
+routerFriends.get("/friends/:id", listData.getFriendWithId)
+routerFriends.post("/friends", listData.createFriends)
+routerFriends.put("/friends/:id", listData.updateFriend)
+routerFriends.delete("/friends/:id", listData.deleteFriend)
 
 
-module.exports = {router}
+module.exports = {routerFriends}
