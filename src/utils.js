@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require("node:fs")
 
 const writeDataToFile = (filename ,content) => {
     fs.writeFileSync(filename, JSON.stringify(content), 'utf-8', (err) => {

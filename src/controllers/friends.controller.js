@@ -1,4 +1,4 @@
-const friends = require("../models/friends.json")
+const friends = require("../../models/friends.json")
 const {writeDataToFile} = require("../utils")
 const {v4 : uuid} = require("uuid")
 
@@ -46,7 +46,7 @@ const listData = {
 
             }
             friends.push(newFriend)
-            writeDataToFile("./data/friends.json", friends)
+            writeDataToFile("./models/friends.json", friends)
             res.status(201).json({
                 data : newFriend
             })
@@ -67,7 +67,7 @@ const listData = {
             name : req.body.name
         }
         friends[friendId] = {...updateFriend}
-        writeDataToFile("./data/friends.json", friends)
+        writeDataToFile("./models/friends.json", friends)
         res.status(200).json({
             data : updateFriend
         })
@@ -83,7 +83,7 @@ const listData = {
         const friendId = friends.filter(p => p.id !== req.params.id)
         
         if(friendId) {
-            writeDataToFile("./data/friends.json", friendId)
+            writeDataToFile("./models/friends.json", friendId)
             res.status(200).json({
                 message : `friends with id ${req.params.id} has been deleted`
             })
